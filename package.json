@@ -1,0 +1,53 @@
+{
+  "name": "quiz-arena",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Quiz Arena — frontend Vue, backend Lambda y modelo de datos, para el taller de AWS",
+  "scripts": {
+    "dev": "vite",
+    "dev:api": "node backend/scripts/build.mjs && node --env-file-if-exists=.env backend/scripts/local.mjs",
+    "build": "npm run build:web && npm run build:api",
+    "build:web": "vue-tsc -b && vite build",
+    "build:api": "node backend/scripts/build.mjs",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc -b --force",
+    "cdk": "cdk",
+    "synth": "npm run build && cdk synth",
+    "diff": "cdk diff",
+    "deploy:web": "npm run build:web && cdk deploy QuizArena-taller-Web",
+    "deploy:api": "npm run build:api && cdk deploy QuizArena-taller-Api",
+    "deploy:all": "npm run build && cdk deploy --all -c withApi=true",
+    "destroy": "cdk destroy --all",
+    "seed": "node db/scripts/seed.mjs",
+    "deploy:data": "cdk deploy QuizArena-taller-Data",
+    "verify:mail": "node infra/scripts/verify-mail.mjs",
+    "db:reset": "node db/scripts/reset.mjs"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cloudformation": "^3.1131.0",
+    "@aws-sdk/client-dynamodb": "^3.1131.0",
+    "@aws-sdk/client-secrets-manager": "^3.1132.0",
+    "@aws-sdk/client-sesv2": "^3.1131.0",
+    "@aws-sdk/credential-providers": "^3.1132.0",
+    "@aws-sdk/lib-dynamodb": "^3.1131.0",
+    "@fontsource/inter": "^5.3.0",
+    "@phosphor-icons/web": "^2.1.2",
+    "pinia": "^4.0.3",
+    "vue": "^3.5.42",
+    "vue-router": "^5.3.1"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.145",
+    "@types/node": "^24.13.3",
+    "@vitejs/plugin-vue": "^6.0.8",
+    "@vue/tsconfig": "^0.9.1",
+    "aws-cdk": "^2.1141.0",
+    "aws-cdk-lib": "^2.269.0",
+    "constructs": "^10.8.1",
+    "esbuild": "^0.28.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0",
+    "vue-tsc": "^3.3.11"
+  }
+}

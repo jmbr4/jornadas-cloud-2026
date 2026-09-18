@@ -1,0 +1,45 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Variables de entorno locales.
+#
+# `.env*` y no `.env`: el patrón suelto matchea solo ese nombre exacto, y
+# `frontend/src/config.ts` da por hecho que puede existir un `.env.production`.
+# La excepción va DESPUÉS de la regla, que es el único orden en que git la
+# tiene en cuenta.
+.env*
+!.env.example
+.vite
+
+# Salida de CDK: plantillas sintetizadas con el ID de cuenta dentro.
+cdk.out
+.cdk.staging
+
+# Credenciales que se cuelan por costumbre
+.aws/
+*.pem
+*.key
+*.p12
+credentials

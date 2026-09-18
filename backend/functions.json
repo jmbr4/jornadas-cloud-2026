@@ -1,0 +1,115 @@
+{
+  "$comment": "Una Lambda por ruta. Esta lista la consume el empaquetado y la plantilla de infraestructura. `access` es el permiso que necesita sobre la tabla, `sendsEmail` si envía correo y `readsAdmins` si necesita saber quién es administrador: de ahí sale su política de IAM.",
+  "functions": [
+    {
+      "name": "auth-magic-link",
+      "method": "POST",
+      "path": "/auth/magic-link",
+      "entry": "src/handlers/auth/requestMagicLink.ts",
+      "auth": false,
+      "access": "write",
+      "sendsEmail": true,
+      "readsAdmins": true
+    },
+    {
+      "name": "auth-verify",
+      "method": "POST",
+      "path": "/auth/verify",
+      "entry": "src/handlers/auth/verify.ts",
+      "auth": false,
+      "access": "write",
+      "sendsEmail": false,
+      "readsAdmins": true
+    },
+    {
+      "name": "me",
+      "method": "GET",
+      "path": "/me",
+      "entry": "src/handlers/me.ts",
+      "auth": true,
+      "access": "read",
+      "sendsEmail": false,
+      "readsAdmins": true
+    },
+    {
+      "name": "me-profile",
+      "method": "POST",
+      "path": "/me/profile",
+      "entry": "src/handlers/me/updateProfile.ts",
+      "auth": true,
+      "access": "write",
+      "sendsEmail": false,
+      "readsAdmins": true
+    },
+    {
+      "name": "sets-list",
+      "method": "GET",
+      "path": "/sets",
+      "entry": "src/handlers/sets/list.ts",
+      "auth": true,
+      "access": "read",
+      "sendsEmail": false,
+      "readsAdmins": false
+    },
+    {
+      "name": "sets-create-question",
+      "method": "POST",
+      "path": "/sets/{setId}/questions",
+      "entry": "src/handlers/sets/createQuestion.ts",
+      "auth": true,
+      "access": "write",
+      "sendsEmail": false,
+      "readsAdmins": true
+    },
+    {
+      "name": "attempts-start",
+      "method": "POST",
+      "path": "/sets/{setId}/attempts",
+      "entry": "src/handlers/attempts/start.ts",
+      "auth": true,
+      "access": "write",
+      "sendsEmail": false,
+      "readsAdmins": false
+    },
+    {
+      "name": "attempts-open",
+      "method": "POST",
+      "path": "/attempts/{attemptId}/questions/{questionId}/open",
+      "entry": "src/handlers/attempts/open.ts",
+      "auth": true,
+      "access": "write",
+      "sendsEmail": false,
+      "readsAdmins": false
+    },
+    {
+      "name": "attempts-answer",
+      "method": "POST",
+      "path": "/attempts/{attemptId}/answers",
+      "entry": "src/handlers/attempts/answer.ts",
+      "auth": true,
+      "access": "write",
+      "sendsEmail": false,
+      "readsAdmins": false
+    },
+    {
+      "name": "attempts-finish",
+      "method": "POST",
+      "path": "/attempts/{attemptId}/finish",
+      "entry": "src/handlers/attempts/finish.ts",
+      "auth": true,
+      "access": "write",
+      "sendsEmail": false,
+      "readsAdmins": false
+    },
+    {
+      "name": "leaderboard-get",
+      "method": "GET",
+      "path": "/leaderboard",
+      "entry": "src/handlers/leaderboard/get.ts",
+      "auth": true,
+      "access": "read",
+      "sendsEmail": false,
+      "readsAdmins": false
+    }
+  ]
+}
